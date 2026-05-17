@@ -20,7 +20,7 @@ st.markdown("Analyze stroke data from IHME-GBD 2023 Dataset (2013-2023)")
 def load_data():
     """Load the CSV file directly"""
     try:
-        df = pd.read_csv('IHME-GBD_2023_DATA_53bc0df1-1.csv')
+        df = pd.read_csv('IHME-GBD_2023_DATA-53bc0df1-1.csv')
         return df
     except FileNotFoundError:
         st.error("❌ CSV file not found. Make sure 'IHME-GBD_2023_DATA_53bc0df1-1.csv' is in the same directory.")
