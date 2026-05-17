@@ -51,12 +51,12 @@ if df is not None:
         st.markdown("### 🎯 Stroke Burden Analysis: Where is it highest and where is it increasing?")
         
         # Prepare data for regional analysis
-        # Assuming the data has columns like 'location', 'year', 'deaths', 'val' (value)
-        region_col = 'location' if 'location' in df.columns else None
-        year_col = 'year' if 'year' in df.columns else None
-        val_col = 'val' if 'val' in df.columns else 'deaths'
+        # Using correct column names: location_name, year, val
+        region_col = 'location_name'
+        year_col = 'year'
+        val_col = 'val'
         
-        if region_col and year_col and val_col:
+        if region_col in df.columns and year_col in df.columns and val_col in df.columns:
             # Group by region and year
             regional_data = df.groupby([region_col, year_col])[val_col].sum().reset_index()
             
@@ -245,7 +245,7 @@ if df is not None:
             st.markdown(insights)
         
         else:
-            st.warning("⚠️ Required columns (location, year, or value columns) not found in dataset. Please check data structure.")
+            st.warning("⚠️ Required columns (location_name, year, or val columns) not found in dataset. Please check data structure.")
     
     with tab2:
         st.subheader("Dataset Preview")
