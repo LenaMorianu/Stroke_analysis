@@ -78,7 +78,7 @@ if df is not None:
     # st.info(f"📊 Global records: {len(df_global)} | 🌍 Regional records: {len(df_non_global)}")
     
     # Create tabs for different views
-    tab1, tab2, tab3, tab4 = st.tabs(["📊 Overview", "📈 Data", "📋 Statistics", "🔍 Details"])
+    tab1, tab2, tab3 = st.tabs(["📊 Overview", "📈 Data", "📋 Statistics"])
     
     with tab1:
         st.markdown("### 🎯 Stroke Burden Analysis: Where is it highest and where is it increasing?")
@@ -391,31 +391,6 @@ if df is not None:
             st.dataframe(df_non_global.describe(), use_container_width=True)
         else:
             st.dataframe(df.describe(), use_container_width=True)
-    
-    with tab4:
-        st.subheader("Missing Data Analysis")
-        
-        # Option to view missing data
-        missing_option = st.radio("Missing data for:", ["All Data", "Global Only", "Regional Only (Non-Global)"])
-        
-        if missing_option == "Global Only":
-            df_missing = df_global
-        elif missing_option == "Regional Only (Non-Global)":
-            df_missing = df_non_global
-        else:
-            df_missing = df
-        
-        missing_data = pd.DataFrame({
-            'Column': df_missing.columns,
-            'Missing Count': df_missing.isnull().sum(),
-            'Missing Percentage': (df_missing.isnull().sum() / len(df_missing) * 100).round(2)
-        })
-        missing_data = missing_data[missing_data['Missing Count'] > 0].sort_values('Missing Count', ascending=False)
-        
-        if len(missing_data) > 0:
-            st.dataframe(missing_data, use_container_width=True)
-        else:
-            st.success("✅ No missing data found!")
 
 else:
     st.error("Unable to load data. Please ensure the CSV file is available.")
