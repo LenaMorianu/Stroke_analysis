@@ -14,7 +14,7 @@ st.set_page_config(
 )
 
 # Title and description
-st.title("🏥 Stroke Analysis Dashboard")
+st.title("Stroke Analysis Dashboard")
 st.markdown("Analyze stroke data from IHME-GBD 2023 Dataset (2013-2023)")
 
 # Load data directly from CSV file
@@ -47,7 +47,7 @@ def load_data():
         # Filter dataframe by age_name column
         if 'age_name' in df.columns:
             df = df[df['age_name'].isin(age_groups)].copy()
-            st.info(f"✅ Filtered data by {len(age_groups)} age groups")
+            # st.info(f"✅ Filtered data by {len(age_groups)} age groups")
         else:
             st.warning("⚠️ 'age_name' column not found in CSV. Loading all data.")
         
@@ -74,8 +74,8 @@ if df is not None:
     df_non_global = df[df['location_name'] != 'Global'].copy()
     
     # Display success message
-    st.success(f"✅ Data loaded successfully from IHME-GBD_2023_DATA_53bc0df1-1.csv")
-    st.info(f"📊 Global records: {len(df_global)} | 🌍 Regional records: {len(df_non_global)}")
+    # st.success(f"✅ Data loaded successfully from IHME-GBD_2023_DATA_53bc0df1-1.csv")
+    # st.info(f"📊 Global records: {len(df_global)} | 🌍 Regional records: {len(df_non_global)}")
     
     # Create tabs for different views
     tab1, tab2, tab3, tab4 = st.tabs(["📊 Overview", "📈 Data", "📋 Statistics", "🔍 Details"])
