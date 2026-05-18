@@ -82,6 +82,7 @@ if df is not None:
     
     with tab1:
         st.markdown("### 🎯 Stroke Burden Analysis: Where is it highest and where is it increasing?")
+        st.divider()
         
         # Create subtabs for Global vs Regional analysis
         overview_tab1, overview_tab2 = st.tabs(["🌐 Global Analysis", "🌍 Regional Analysis (Non-Global)"])
