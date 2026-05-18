@@ -20,9 +20,37 @@ st.markdown("Analyze stroke data from IHME-GBD 2023 Dataset (2013-2023)")
 # Load data directly from CSV file
 @st.cache_data
 def load_data():
-    """Load the CSV file directly"""
+    """Load the CSV file and filter by age groups"""
     try:
         df = pd.read_csv('IHME-GBD_2023_DATA-53bc0df1-1.csv')
+        
+        # Define age groups to filter
+        age_groups = [
+            '0-14 years',
+            '15-19 years',
+            '20-24 years',
+            '25-29 years',
+            '30-34 years',
+            '35-39 years',
+            '40-44 years',
+            '45-49 years',
+            '50-54 years',
+            '55-59 years',
+            '60-64 years',
+            '65-69 years',
+            '70-74 years',
+            '75-79 years',
+            '80-84 years',
+            '85+ years'
+        ]
+        
+        # Filter dataframe by age_name column
+        if 'age_name' in df.columns:
+            df = df[df['age_name'].isin(age_groups)].copy()
+            st.info(f"✅ Filtered data by {len(age_groups)} age groups")
+        else:
+            st.warning("⚠️ 'age_name' column not found in CSV. Loading all data.")
+        
         return df
     except FileNotFoundError:
         st.error("❌ CSV file not found. Make sure 'IHME-GBD_2023_DATA_53bc0df1-1.csv' is in the same directory.")
